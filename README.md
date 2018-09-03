@@ -1,2 +1,3 @@
 # JavaProjects
-List of my projects which I've been working on within Java
+List of my projects I've been working on with Java.
+Some are incomplete, some are just excercises I found from other websites like CodingBat / CodeAbbey / ProgrammingByDoing etc...
