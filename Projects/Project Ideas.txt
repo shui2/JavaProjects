@@ -1,0 +1,7 @@
+- Simple text-based RPG
+- GUI Text based RPG
+- GUI Dice Roller
+- Battleship Game
+- Management App (Bank, Library, Airport etc...)
+- Blackjack
+- Nim
