@@ -111,8 +111,8 @@ public class Nim {
 		return total;
 	}
 	
+	//	Column pattern display
 	private static void displayPilesColumn() {
-		//	Column pattern display
 		int highest = Math.max(Math.max(piles[0].getCounters(), piles[1].getCounters()), piles[2].getCounters());
 		System.out.println();
 		for (int i = highest; i >= 1; i--) {
@@ -136,6 +136,7 @@ public class Nim {
 		System.out.printf("%s  %s  %s%n", piles[0].getName(), piles[1].getName(), piles[2].getName());
 	}
 	
+	//	Numerical pattern display
 	private static void displayPilesNumerical() {
 		System.out.printf("%n%s%15s%15s%n", piles[0], piles[1], piles[2]);
 	}
@@ -150,7 +151,7 @@ public class Nim {
 		
 		String display;
 		while (true) {
-			System.out.print("Before we begin, please state what type of display for counters do you wish to use ('column' or 'numerical'): ");
+			System.out.print("Before we begin, please select what type of display for counters do you wish to use ('column' or 'numerical'): ");
 			display = sc.nextLine();
 			System.out.println();
 			if (display.equalsIgnoreCase("numerical")) {
