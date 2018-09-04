@@ -8,7 +8,7 @@ public class Nim {
 	//	Fields for players and piles
 	private static Player[] players = new Player[2];
 	private static Pile[] piles = new Pile[3];
-	//private static boolean ai = false;
+	private static boolean ai = false;
 	private static boolean displayMode = true;	// true for column display, false for numerical
 	
 	public static void main(String[] args) {
@@ -20,7 +20,7 @@ public class Nim {
 	//	Core method. This is where all the answers and calculations happen
 	private static void start() {
 		Scanner sc = new Scanner(System.in);
-		//Random aiMove = new Random();
+		Random aiMove = new Random();
 		
 		boolean isPlayerOne = true;
 		Player currentPlayer = players[0];
@@ -40,34 +40,42 @@ public class Nim {
 			
 			if (counters == 1) break;
 			
-			if (displayMode) {
-				displayPilesColumn();
-			} else {
-				displayPilesNumerical();
-			}
+			printPiles();
 			System.out.println();
 			
-			do {
-				System.out.print(currentPlayer.getName() + ", choose a pile: ");
-				answer = sc.nextLine().trim();
-			} while (!isPileValid(answer));
-			chosenPile = getPile(answer);
+			if (ai && currentPlayer.getName().equals("CPU")) {
+				String[] piles = {Nim.piles[0].getName(), Nim.piles[1].getName(), Nim.piles[2].getName()};
+				String cpuPile;
+				do {
+					cpuPile = piles[aiMove.nextInt(3)];
+					chosenPile = getPile(cpuPile);
+				} while (!isPileValid(cpuPile) && chosenPile.getCounters() < 1);
+				System.out.println("CPU has chosen " + cpuPile);
+			} else {
+				do {
+					System.out.print(currentPlayer.getName() + ", choose a pile: ");
+					answer = sc.nextLine().trim();
+				} while (!isPileValid(answer));
+				chosenPile = getPile(answer);
+			}
 			
-			do {
-				System.out.print("How many to remove from pile " + chosenPile.getName() + ": ");
-				countersTaken = sc.nextLine().trim();
-			} while (!isCounterValid(countersTaken, chosenPile));
-			int amount = Integer.parseInt(countersTaken);
+			int amount = 0;
+			if (ai && currentPlayer.getName().equals("CPU")) {
+				amount = aiMove.nextInt(chosenPile.getCounters()) + 1;
+				System.out.println("CPU has taken " + amount + " counters");
+			} else {
+				do {
+					System.out.print("How many to remove from pile " + chosenPile.getName() + ": ");
+					countersTaken = sc.nextLine().trim();
+				} while (!isCounterValid(countersTaken, chosenPile));
+				amount = Integer.parseInt(countersTaken);
+			}
 			
 			chosenPile.setCounters(chosenPile.getCounters() - amount);
 			counters = numberOfCounters();
 		}
 		
-		if (displayMode) {
-			displayPilesColumn();
-		} else {
-			displayPilesNumerical();
-		}
+		printPiles();
 		
 		System.out.println((counters == 0) ? "\nAll piles are empty. " + currentPlayer.getName() + " lost the match!" : "\n" + 
 		currentPlayer.getName() + ", there is only one counter left, so you lose automatically.");
@@ -77,7 +85,7 @@ public class Nim {
 	private static void intro() {
 		System.out.println("Welcome to Nim, a simple strategy game between two players.\n");
 		System.out.printf("The rules are simple.%n* Each player alternates turns and takes counters from a pile%n* At least one counter must be taken. " +
-		"%n* If a player cannot take a counter or last counter remains, that player loses.%n%nAdditionally, you can play versus a computer by naming the second player 'CPU'%n");
+		"%n* If a player cannot take a counter or last counter remains, that player loses.%n%nAdditionally, you can play versus a computer by naming the first or second player 'CPU'%n");
 		System.out.println("Good Luck!\n");
 	}
 	
@@ -86,6 +94,14 @@ public class Nim {
 		for (Pile i: piles)
 			if (i.getName().equals(name)) return i;
 		return null;
+	}
+	
+	private static void printPiles() {
+		if (displayMode) {
+			displayPilesColumn();
+		} else {
+			displayPilesNumerical();
+		}
 	}
 	
 	private static int numberOfCounters() {
@@ -142,13 +158,15 @@ public class Nim {
 				break;
 			}
 			if (display.equalsIgnoreCase("column")) break;
-			System.out.println("Invalid input.\n");
+			System.out.printf("Invalid input.%n");
 		}
 		
 		System.out.print("Player 1, enter your name: ");
 		player1 = sc.nextLine();
 		System.out.print("Player 2, enter your name: ");
 		player2 = sc.nextLine();
+		
+		if (player1.equals("CPU") || player2.equals("CPU")) ai = true;
 		
 		Player p1 = new Player(player1);
 		Player p2 = new Player(player2);
@@ -183,7 +201,9 @@ public class Nim {
 			if (pile.getCounters() != 0) {
 				return true;
 			} else {
-				System.out.println("That pile is already empty. Try again.\n");
+				if (!ai) {
+					System.out.println("That pile is already empty. Try again.\n");
+				}
 				return false;
 			}
 		} else {
@@ -196,10 +216,14 @@ public class Nim {
 		try {
 			int n = Integer.parseInt(counters);
 			if (n <= 0) {
-				System.out.println("You can't take zero or less counters. Try again.\n");
+				if (!ai) {
+					System.out.println("That pile is already empty. Try again.\n");
+				}
 				return false;
 			} else if (n > pile.getCounters()) {
-				System.out.println("Pile " + pile.getName() + " doesn't have that much counters. Try again.\n");
+				if (!ai) {
+					System.out.println("That pile is already empty. Try again.\n");
+				}
 				return false;
 			}
 			return true;
