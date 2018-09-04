@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Nim {
 	
-	//	Fields for players and piles
+	//	Fields for players, piles, AI and display setting
 	private static Player[] players = new Player[2];
 	private static Pile[] piles = new Pile[3];
 	private static boolean ai = false;
