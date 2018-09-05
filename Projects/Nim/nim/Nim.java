@@ -84,7 +84,7 @@ public class Nim {
 	
 	//	Introductory to the game method
 	private void intro() {
-		System.out.println("Welcome to Nim, a simple strategy game between two players.\n");
+		System.out.printf("Welcome to Nim, a simple strategy game between two players.%n");
 		System.out.printf("The rules are simple:%n* Each player alternates turns and takes counters from a pile%n* At least one counter must be taken. " +
 		"%n* If a player cannot take a counter or last counter remains, that player loses.%n%nAdditionally, you can play versus a computer by naming the first or second player 'CPU'%n");
 		System.out.println("Good Luck!\n");
@@ -200,13 +200,11 @@ public class Nim {
 			if (pile.getCounters() != 0) {
 				return true;
 			} else {
-				if (!ai) {
-					System.out.println("That pile is already empty. Try again.\n");
-				}
+				System.out.printf("That pile is already empty. Try again.%n");
 				return false;
 			}
 		} else {
-			System.out.println("No pile exists with that name. Try again.\n");
+			System.out.printf("No pile exists with that name. Try again.%n");
 			return false;
 		}
 	}
@@ -215,14 +213,10 @@ public class Nim {
 		try {
 			int n = Integer.parseInt(counters);
 			if (n <= 0) {
-				if (!ai) {
-					System.out.println("That pile is already empty. Try again.\n");
-				}
+				System.out.printf("You cannot take 0 or less counters. Try again.%n");
 				return false;
 			} else if (n > pile.getCounters()) {
-				if (!ai) {
-					System.out.println("That pile is already empty. Try again.\n");
-				}
+				System.out.printf("You cannot take more counters from a pile than it already has it. Try again.%n");
 				return false;
 			}
 			return true;
