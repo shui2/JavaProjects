@@ -200,11 +200,11 @@ public class Nim {
 			if (pile.getCounters() != 0) {
 				return true;
 			} else {
-				System.out.printf("That pile is already empty. Try again.%n");
+				System.out.println("That pile is already empty. Try again.\n");
 				return false;
 			}
 		} else {
-			System.out.printf("No pile exists with that name. Try again.%n");
+			System.out.println("No pile exists with that name. Try again.\n");
 			return false;
 		}
 	}
@@ -213,10 +213,10 @@ public class Nim {
 		try {
 			int n = Integer.parseInt(counters);
 			if (n <= 0) {
-				System.out.printf("You cannot take 0 or less counters. Try again.%n");
+				System.out.println("You cannot take 0 or less counters. Try again.\n");
 				return false;
 			} else if (n > pile.getCounters()) {
-				System.out.printf("You cannot take more counters from a pile than it already has it. Try again.%n");
+				System.out.println("You cannot take more counters from a pile than it already has it. Try again.\n");
 				return false;
 			}
 			return true;
