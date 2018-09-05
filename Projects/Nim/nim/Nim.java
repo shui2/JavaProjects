@@ -50,7 +50,7 @@ public class Nim {
 				do {
 					cpuPile = piles[rng.nextInt(3)];
 					chosenPile = getPile(cpuPile);
-				} while (!isPileValid(cpuPile) && chosenPile.getCounters() < 1);
+				} while (chosenPile.getCounters() < 1);
 				System.out.println("CPU has chosen " + cpuPile);
 			} else {
 				do {
