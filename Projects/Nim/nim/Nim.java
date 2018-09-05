@@ -10,6 +10,8 @@ public class Nim {
 	private static Pile[] piles = new Pile[3];
 	private static boolean ai = false;
 	private static boolean displayMode = true;	// true for column display, false for numerical
+	private static Scanner sc = new Scanner(System.in);
+	private static Random rng = new Random();
 	
 	public static void main(String[] args) {
 		intro();
@@ -19,12 +21,10 @@ public class Nim {
 	
 	//	Core method. This is where all the answers and calculations happen
 	private static void start() {
-		Scanner sc = new Scanner(System.in);
-		Random aiMove = new Random();
-		
 		boolean isPlayerOne = true;
 		Player currentPlayer = players[0];
 		Pile chosenPile = null;
+		
 		String answer;
 		String countersTaken;
 		
@@ -47,7 +47,7 @@ public class Nim {
 				String[] piles = {Nim.piles[0].getName(), Nim.piles[1].getName(), Nim.piles[2].getName()};
 				String cpuPile;
 				do {
-					cpuPile = piles[aiMove.nextInt(3)];
+					cpuPile = piles[rng.nextInt(3)];
 					chosenPile = getPile(cpuPile);
 				} while (!isPileValid(cpuPile) && chosenPile.getCounters() < 1);
 				System.out.println("CPU has chosen " + cpuPile);
@@ -61,7 +61,7 @@ public class Nim {
 			
 			int amount = 0;
 			if (ai && currentPlayer.getName().equals("CPU")) {
-				amount = aiMove.nextInt(chosenPile.getCounters()) + 1;
+				amount = rng.nextInt(chosenPile.getCounters()) + 1;
 				System.out.println("CPU has taken " + amount + " counters");
 			} else {
 				do {
@@ -143,9 +143,6 @@ public class Nim {
 	
 	//	Game startup initialization method. Initialize the counters, player names etc...
 	private static void init() {
-		Scanner sc = new Scanner(System.in);
-		Random rng = new Random();
-		
 		String player1;
 		String player2;
 		
