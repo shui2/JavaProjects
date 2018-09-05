@@ -45,7 +45,7 @@ public class Nim {
 			System.out.println();
 			
 			if (ai && currentPlayer.getName().equals("CPU")) {
-				String[] piles = {Nim.piles[0].getName(), Nim.piles[1].getName(), Nim.piles[2].getName()};
+				String[] piles = {this.piles[0].getName(), this.piles[1].getName(), this.piles[2].getName()};
 				String cpuPile;
 				do {
 					cpuPile = piles[rng.nextInt(3)];
