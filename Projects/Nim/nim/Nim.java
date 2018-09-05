@@ -85,7 +85,7 @@ public class Nim {
 	//	Introductory to the game method
 	private void intro() {
 		System.out.println("Welcome to Nim, a simple strategy game between two players.\n");
-		System.out.printf("The rules are simple.%n* Each player alternates turns and takes counters from a pile%n* At least one counter must be taken. " +
+		System.out.printf("The rules are simple:%n* Each player alternates turns and takes counters from a pile%n* At least one counter must be taken. " +
 		"%n* If a player cannot take a counter or last counter remains, that player loses.%n%nAdditionally, you can play versus a computer by naming the first or second player 'CPU'%n");
 		System.out.println("Good Luck!\n");
 	}
