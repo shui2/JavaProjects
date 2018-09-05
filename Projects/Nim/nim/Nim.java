@@ -6,21 +6,22 @@ import java.util.Random;
 public class Nim {
 	
 	//	Internal game data - players, piles, AI, display setting etc...
-	private static Player[] players = new Player[2];
-	private static Pile[] piles = new Pile[3];
-	private static boolean ai = false;
-	private static boolean displayMode = true;	// true for column display, false for numerical
-	private static Scanner sc = new Scanner(System.in);
-	private static Random rng = new Random();
+	private Player[] players = new Player[2];
+	private Pile[] piles = new Pile[3];
+	private boolean ai = false;
+	private boolean displayMode = true;	// true for column display, false for numerical
+	private Scanner sc = new Scanner(System.in);
+	private Random rng = new Random();
 	
 	public static void main(String[] args) {
-		intro();
-		init();
-		start();
+		Nim nim = new Nim();
+		nim.intro();
+		nim.init();
+		nim.start();
 	}
 	
 	//	Core method. This is where all the answers and calculations happen
-	private static void start() {
+	private void start() {
 		boolean isPlayerOne = true;
 		Player currentPlayer = players[0];
 		Pile chosenPile = null;
@@ -82,7 +83,7 @@ public class Nim {
 	}
 	
 	//	Introductory to the game method
-	private static void intro() {
+	private void intro() {
 		System.out.println("Welcome to Nim, a simple strategy game between two players.\n");
 		System.out.printf("The rules are simple.%n* Each player alternates turns and takes counters from a pile%n* At least one counter must be taken. " +
 		"%n* If a player cannot take a counter or last counter remains, that player loses.%n%nAdditionally, you can play versus a computer by naming the first or second player 'CPU'%n");
@@ -90,13 +91,13 @@ public class Nim {
 	}
 	
 	//	Support methods. Used in aiding the main gameplay method (printing of piles, how many counters are left etc...)
-	private static Pile getPile(String name) {
+	private Pile getPile(String name) {
 		for (Pile i: piles)
 			if (i.getName().equals(name)) return i;
 		return null;
 	}
 	
-	private static void printPiles() {
+	private void printPiles() {
 		if (displayMode) {
 			displayPilesColumn();
 		} else {
@@ -104,7 +105,7 @@ public class Nim {
 		}
 	}
 	
-	private static int numberOfCounters() {
+	private int numberOfCounters() {
 		int total = 0;
 		for (Pile i : piles)
 			total += i.getCounters();
@@ -112,7 +113,7 @@ public class Nim {
 	}
 	
 	//	Column pattern display
-	private static void displayPilesColumn() {
+	private void displayPilesColumn() {
 		int highest = Math.max(Math.max(piles[0].getCounters(), piles[1].getCounters()), piles[2].getCounters());
 		System.out.println();
 		for (int i = highest; i >= 1; i--) {
@@ -137,12 +138,12 @@ public class Nim {
 	}
 	
 	//	Numerical pattern display
-	private static void displayPilesNumerical() {
+	private void displayPilesNumerical() {
 		System.out.printf("%n%s%15s%15s%n", piles[0], piles[1], piles[2]);
 	}
 	
 	//	Game startup initialization method. Initialize the counters, player names etc...
-	private static void init() {
+	private void init() {
 		String player1;
 		String player2;
 		
@@ -186,7 +187,7 @@ public class Nim {
 	}
 	
 	//	Validation methods, used to check if player's input is correct
-	private static boolean isPileValid(String name) {
+	private boolean isPileValid(String name) {
 		Pile pile = null;
 		for (Pile i : piles) {
 			if (i.getName().equals(name)) {
@@ -210,7 +211,7 @@ public class Nim {
 		}
 	}
 	
-	private static boolean isCounterValid(String counters, Pile pile) {
+	private boolean isCounterValid(String counters, Pile pile) {
 		try {
 			int n = Integer.parseInt(counters);
 			if (n <= 0) {
