@@ -149,8 +149,8 @@ public class Nim {
 		String player2;
 		
 		String display;
+		System.out.print("Before we begin, please select what type of display for counters do you wish to use ('column' or 'numerical'): ");
 		while (true) {
-			System.out.print("Before we begin, please select what type of display for counters do you wish to use ('column' or 'numerical'): ");
 			display = sc.nextLine();
 			System.out.println();
 			if (display.equalsIgnoreCase("numerical")) {
