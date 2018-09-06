@@ -43,7 +43,6 @@ public class Nim {
 			if (counters == 1) break;
 			
 			printPiles();
-			System.out.println();
 			
 			if (ai && currentPlayer.getName().equals("CPU")) {
 				String[] piles = {this.piles[0].getName(), this.piles[1].getName(), this.piles[2].getName()};
@@ -104,6 +103,7 @@ public class Nim {
 		} else {
 			displayPilesNumerical();
 		}
+		System.out.println();
 	}
 	
 	private int numberOfCounters() {
