@@ -18,6 +18,7 @@ public class Nim {
 		nim.intro();
 		nim.init();
 		nim.start();
+		sc.close();
 	}
 	
 	//	Core method. This is where all the answers and calculations happen
