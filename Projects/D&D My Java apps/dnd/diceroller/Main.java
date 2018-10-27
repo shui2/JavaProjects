@@ -8,6 +8,7 @@ import java.util.List;
 
 //	Needs work as it still contains a lot of bugs
 public class Main {
+	private static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
 		intro();
@@ -16,8 +17,6 @@ public class Main {
 	
 	//	Core method
 	public static void startRolling() {
-		Scanner sc = new Scanner(System.in);
-		
 		int times;
 		int sides;
 		
@@ -51,13 +50,15 @@ public class Main {
 	
 	//	Ask the user if he would like to repeat the rolling
 	public static void repeat() {
-		Scanner sc = new Scanner(System.in);
 		while (true) {
 			System.out.print("\nRoll again (y/n) ? ");
 			String input = sc.nextLine();
 			
 			if (input.equalsIgnoreCase("n")) break;
-			if (input.equalsIgnoreCase("y")) startRolling();
+			if (input.equalsIgnoreCase("y")) {
+				startRolling();
+				break;
+			}
 		}
 	}
 	
