@@ -6,6 +6,7 @@ public class Die {
 	
 	private int sides = 6;
 	private int[] numbers;
+	private Random random = new Random();
 	
 	public Die() {
 		numbers = assignNumbers(6);
@@ -27,7 +28,6 @@ public class Die {
 	}
 	
 	public int roll() {
-		Random random = new Random();
 		return random.nextInt(sides) + 1;
 	}
 	
