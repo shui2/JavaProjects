@@ -8,15 +8,16 @@ import java.util.List;
 
 //	Needs work as it still contains a lot of bugs
 public class Main {
-	private static Scanner sc = new Scanner(System.in);
+	private Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
-		intro();
-		startRolling();
+		Main main = new Main();
+		main.intro();
+		main.startRolling();
 	}
 	
 	//	Core method
-	public static void startRolling() {
+	public void startRolling() {
 		int times;
 		int sides;
 		
@@ -49,7 +50,7 @@ public class Main {
 	}
 	
 	//	Ask the user if he would like to repeat the rolling
-	public static void repeat() {
+	public void repeat() {
 		while (true) {
 			System.out.print("\nRoll again (y/n) ? ");
 			String input = sc.nextLine();
@@ -63,7 +64,7 @@ public class Main {
 	}
 	
 	//	Small introductory message
-	private static void intro() {
+	private void intro() {
 		String introduction = "Welcome to a D&D dice thrower app";
 		System.out.println("\n" + introduction);
 		for (int i = 0; i < introduction.length(); i++) {
@@ -73,7 +74,7 @@ public class Main {
 	}
 	
 	//	Sum of all the collected rolls
-	public static int total(List<Integer> list) {
+	public int total(List<Integer> list) {
 		int sum = 0;
 		for (int i = 0; i < list.size(); i++)
 			sum += list.get(i);
@@ -81,12 +82,12 @@ public class Main {
 	}
 	
 	//	Single roll method
-	public static int rollADie(Die die) {
+	public int rollADie(Die die) {
 		return die.roll();
 	}
 	
 	//	Multi roll method
-	public static int rollADie(Die die, int times) {
+	public int rollADie(Die die, int times) {
 		int sum = 0;
 		for (int i = 0; i < times; i++)
 			sum += die.roll();
@@ -95,7 +96,7 @@ public class Main {
 	}
 	
 	//	Validation methods, to see if the values given for integer values are valid
-	public static boolean isTimesValid(String a) {
+	public boolean isTimesValid(String a) {
 		try {
 			int n = Integer.parseInt(a);
 			
@@ -110,7 +111,7 @@ public class Main {
 		}
 	}
 	
-	public static boolean isSideValid(String a) {
+	public boolean isSideValid(String a) {
 		try {
 			int n = Integer.parseInt(a);
 			
