@@ -30,7 +30,10 @@ public class Main {
 		}
 		
 		String[] info = temp.split("d");
-		
+		if (info.length != 2) {
+			System.out.println("Error! Invalid input");
+			return;
+		}
 		if (!isTimesValid(info[0])) return;
 		if (!isSideValid(info[1])) return;
 		
