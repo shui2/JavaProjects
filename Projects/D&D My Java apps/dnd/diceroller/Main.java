@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
-//	Needs work as contains a lot of bugs
+//	Needs work as it still contains a lot of bugs
 public class Main {
 	
 	public static void main(String[] args) {
