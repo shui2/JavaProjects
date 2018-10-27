@@ -1,3 +1,5 @@
+//	Daliy Programmer challenge #364: 
+//	https://www.reddit.com/r/dailyprogrammer/comments/8s0cy1/20180618_challenge_364_easy_create_a_dice_roller/
 package dnd.diceroller;
 
 import java.util.Scanner;
