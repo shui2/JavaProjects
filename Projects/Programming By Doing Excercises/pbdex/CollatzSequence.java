@@ -12,6 +12,7 @@ public class CollatzSequence {
 		
 		System.out.print("Enter a number: ");
 		int number = sc.nextInt();
+		sc.nextLine();
 		int steps = 0;
 		int largest = number;
 		
