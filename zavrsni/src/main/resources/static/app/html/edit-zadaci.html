@@ -1,0 +1,34 @@
+<div ng-controller="editCtrl">
+	<h1>Unesite nove informacije o zadatku</h1><hr>
+	
+	<form>
+		<div class="form-group">
+			<label><strong>Naziv</strong></label>
+			<input class="form-control" type="text" ng-model="object.naziv">
+		</div>
+		
+		<div class="form-group">
+			<label><strong>Zaduzeni</strong></label>
+			<input class="form-control" type="text" ng-model="object.zaduzeni">
+		</div>
+		
+		<div class="form-group">
+			<label><strong>Procenjeno sati</strong></label>
+			<input class="form-control" type="text" ng-model="object.procenjenoSati">
+		</div>
+		
+		<div class="form-group">
+			<label><strong>Opis</strong></label>
+			<input class="form-control" type="text" ng-model="object.opis">
+		</div>
+		
+		<div class="form-group">
+			<label><strong>Projekat</strong></label>
+			<select class="form-control" ng-model="object.projekatId">
+				<option ng-repeat="x in projekti" value="{{x.id}}" ng-selected="x.id == object.projekatId"">{{x.naziv}}</option>
+			</select>
+		</div>
+		
+		<button class="btn btn-primary" ng-click="save()">Izmeni</button>
+	</form>
+</div>

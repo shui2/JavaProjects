@@ -1,0 +1,63 @@
+<div ng-controller="mainCtrl">
+	<h1>Zadaci</h1><hr>
+	
+	<div align="right">
+		<button class="btn btn-primary" ng-click="goToAdd()">Dodavanje</button>
+	</div><br>
+	
+	<form>
+		<div class="form-group">
+			<label><strong>Projekat</strong></label>
+			<select class="form-control" ng-model="searchParams.projekat">
+				<option ng-repeat="x in projekti" value="{{x.naziv}}">{{x.naziv}}</option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label><strong>Naziv</strong></label>
+			<input class="form-control" type="text" ng-model="searchParams.naziv">
+		</div>
+		
+		<div class="form-group">
+			<label><strong>Zaduzeni</strong></label>
+			<input class="form-control" type="text" ng-model="searchParams.zaduzeni">
+		</div>
+		
+		<button class="btn btn-primary" ng-click="search()">Trazi</button>
+		<button class="btn btn-primary" ng-click="reset()">Ponisti</button>
+	</form><br>
+	
+	<div class="btn-group float-right">
+		<button ng-disabled="page == 0" ng-click="changePage(-1)" class="btn btn-primary">Prethodna</button>
+		<button ng-disabled="page >= totalPages - 1" ng-click="changePage(1)" class="btn btn-primary">Sledeca</button>
+	</div>
+
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Naziv</th>
+				<th>Zaduzeni</th>
+				<th>Procenjeno sati</th>
+				<th>Opis</th>
+				<th>Projekat</th>
+				<th>Stanje</th>
+			</tr>
+		</thead>
+		
+		<tbody> 
+			<tr ng-repeat="r in resource">
+				<td>{{r.naziv}}</td>
+				<td>{{r.zaduzeni}}</td>
+				<td>{{r.procenjenoSati}}</td>
+				<td>{{r.opis}}</td>
+				<td>{{r.projekatNaziv}}</td>
+				<td>
+					<button class="btn btn-danger" type="button" ng-click="delete(r.id)">Obrisi</button>
+					<button class="btn btn-warning  text-white" type="button" ng-click="goToEdit(r.id)">Izmeni</button>
+					<button class="btn btn-primary" type="button" ng-click="predji(r.id)" ng-disabled="r.stanjeNaziv == 'Zavrsen'">Predji</button>
+				</td>
+			</tr>
+		</tbody>
+	</table><hr>
+	<h3>Ukupno sati za zadatke: {{ukupnoSati}}</h3>
+</div>
